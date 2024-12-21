@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+  </head>
+  <body>
+    <div class="container">
+        <div class="title">
+            <h1>REGISTRE SEUS BOLETOS AQUI.</h1>
+            <p>Preencha com as informações do boleto e salve.</p>
+        </div>
+        <div class="form">
+            <h2 class="subtitle">Informações</h2>
+            <div class="row">
+                <div class="field">
+                    <label for="deliveryDate">Data da <b>Entrega</b></label>
+                    <input type="date" name="" id="deliveryDate">
+                </div>
+                <div class="field">
+                    <label for="merchandiseType">Tipo de <b>Mercadoria</b></label>
+                    <select name="merchandiseType" id="merchandiseType">
+                        <option value="">Selecione</option>
+                        <option value="">Ético</option>
+                        <option value="">Genérico</option>
+                        <option value="">Perfumaria</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="field">
+                    <label for="payee"><b>Beneficiário</b></label>
+                    <select name="payee" id="payee">
+                        <option value="">Selecione</option>
+                        <option value="">B1</option>
+                        <option value="">B2</option>
+                        <option value="">B3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="field">
+                    <label for="dueDate">Data do <b>Vencimento</b></label>
+                    <input type="date" name="dueDate" id="dueDate">
+                </div>
+                <div class="field">
+                    <label for="value"><b>Valor</b></label>
+                    <input type="text" id="value">
+                </div>
+            </div>
+            <button type="button" id="save">Salvar</button>
+        </div>
+    </div>
+  </body>
+</html>

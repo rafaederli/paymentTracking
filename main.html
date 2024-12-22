@@ -45,6 +45,13 @@
             border: none;
             border-bottom: 1px solid #E2E4E5;
         }
+        .errorMessage {
+            display: none;
+            font-family: "Roboto", serif;
+            font-size: 10px;
+            margin-top: 8px;
+            color: red;
+        }
         input {
             height: 44px;
         }
@@ -111,7 +118,8 @@
             <div class="row">
                 <div class="field">
                     <label for="deliveryDate">Data da <b>Entrega</b></label>
-                    <input type="date" name="" id="deliveryDate">
+                    <input type="date" name="deliveryDate" id="deliveryDate">
+                    <div id="errorDeliveryDate" class="errorMessage">Atenção: a data inserida é anterior à atual.</div>
                 </div>
                 <div class="field">
                     <label for="merchandiseType">Tipo de <b>Mercadoria</b></label>
@@ -138,6 +146,7 @@
                 <div class="field">
                     <label for="dueDate">Data do <b>Vencimento</b></label>
                     <input type="date" name="dueDate" id="dueDate">
+                    <div id="errorDueDate" class="errorMessage">Atenção: o boleto está vencido ou vencerá hoje.</div>
                 </div>
                 <div class="field">
                     <label for="value"><b>Valor</b></label>
@@ -151,4 +160,45 @@
         </button>
     </div>
   </body>
+  <script>
+    // Delivery Date Validation
+    const deliveryDateInput = document.getElementById("deliveryDate");
+    const errorDeliveryDate = document.getElementById("errorDeliveryDate");
+    deliveryDateInput.addEventListener("input", () => {
+        const deliveryDate = new Date(deliveryDateInput.value);
+        const today = new Date();
+        deliveryDate.setHours(24,0,0,0);
+        today.setHours(0,0,0,0);
+        if(deliveryDate < today) {
+            errorDeliveryDate.style.display = "block";
+        } else {
+            errorDeliveryDate.style.display = "none";
+        }
+    });
+    // Due Date Validation
+    const dueDateInput = document.getElementById("dueDate");
+    const errorDueDate = document.getElementById("errorDueDate");
+    dueDateInput.addEventListener("input", () => {
+        const dueDate = new Date(dueDateInput.value);
+        const today = new Date();
+        dueDate.setHours(24,0,0,0);
+        today.setHours(0,0,0,0);
+        if(dueDate <= today) {
+            errorDueDate.style.display = "block";
+        } else {
+            errorDueDate.style.display = "none";
+        }
+    });
+    // Value Validation
+    const valueInput = document.getElementById("value");
+    valueInput.addEventListener("input", () => {
+        let value = valueInput.value;
+        value = value.replace(/\D/g,"");
+        const formattedValue = (Number(value)/100).toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL"
+        });
+        valueInput.value = formattedValue;
+    });
+  </script>
 </html>

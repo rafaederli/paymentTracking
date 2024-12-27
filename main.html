@@ -6,106 +6,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=check" />
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-        h1 {
-            font-family: "Poppins", serif;
-            font-size: 32px;
-            color: #242731;
-
-            margin-bottom: 16px;
-        }
-        h2 {
-            font-family: "Poppins", serif;
-            font-size: 20px;
-            color: #242731;
-        }
-        label {
-            font-family: "Poppins", serif;
-            font-size: 14px;
-            color: #242426;
-            margin-bottom: 8px;
-        }
-        button {
-            font-family: "Poppins", serif;
-            font-size: 16px;
-        }
-        p {
-            font-family: "Roboto", serif;
-            font-size: 16px;
-            color: #575F6E;
-        }
-        input, select, option {
-            font-family: "Roboto", serif;
-            font-size: 14px;
-            color: #9A9EA5;
-            border: none;
-            border-bottom: 1px solid #E2E4E5;
-        }
-        .errorMessage {
-            display: none;
-            font-family: "Roboto", serif;
-            font-size: 10px;
-            margin-top: 8px;
-            color: red;
-        }
-        input {
-            height: 44px;
-        }
-        select {
-            height: 48px;
-        }
-        .container {
-            display: flex;
-            flex-direction: column;
-            margin-top: 1rem;
-            margin-inline: 10rem;
-        }
-        .title {
-            display: flex;
-            flex-direction: column;
-        }
-        .form {
-            display: flex;
-            flex-direction: column;            
-            margin-top: 32px;
-            margin-bottom: 32px;
-            padding: 32px;
-            gap: 32px;
-            border-style: solid;
-            border-width: 1px;
-            border-radius: 10px;
-            border-color: #E2E4E5;
-        }
-        .row {
-            display: flex;
-            gap: 32px;
-        }
-        .field {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-        }
-        #button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            width: 139px;
-            height: 48px;
-            background-color: #007AFF;
-            border: 1px solid;
-            border-radius: 4px;
-            color: white;
-        }
-        #button:hover {
-            border: 1px solid #0065D3;
-            cursor: pointer;
-        }
-    </style>
   </head>
   <body>
     <div class="container">
@@ -135,10 +35,10 @@
                 <div class="field">
                     <label for="payee"><b>Beneficiário</b></label>
                     <select name="payee" id="payee">
-                        <option value="">Selecione</option>
-                        <option value="">B1</option>
-                        <option value="">B2</option>
-                        <option value="">B3</option>
+                        <option disabled selected>Selecione</option>
+                        <? for(var i=0; i<list.length; i++) { ?>
+                        <option><?= list[i]; ?></option>
+                        <? } ?>
                     </select>
                 </div>
             </div>
@@ -160,45 +60,4 @@
         </button>
     </div>
   </body>
-  <script>
-    // Delivery Date Validation
-    const deliveryDateInput = document.getElementById("deliveryDate");
-    const errorDeliveryDate = document.getElementById("errorDeliveryDate");
-    deliveryDateInput.addEventListener("input", () => {
-        const deliveryDate = new Date(deliveryDateInput.value);
-        const today = new Date();
-        deliveryDate.setHours(24,0,0,0);
-        today.setHours(0,0,0,0);
-        if(deliveryDate < today) {
-            errorDeliveryDate.style.display = "block";
-        } else {
-            errorDeliveryDate.style.display = "none";
-        }
-    });
-    // Due Date Validation
-    const dueDateInput = document.getElementById("dueDate");
-    const errorDueDate = document.getElementById("errorDueDate");
-    dueDateInput.addEventListener("input", () => {
-        const dueDate = new Date(dueDateInput.value);
-        const today = new Date();
-        dueDate.setHours(24,0,0,0);
-        today.setHours(0,0,0,0);
-        if(dueDate <= today) {
-            errorDueDate.style.display = "block";
-        } else {
-            errorDueDate.style.display = "none";
-        }
-    });
-    // Value Validation
-    const valueInput = document.getElementById("value");
-    valueInput.addEventListener("input", () => {
-        let value = valueInput.value;
-        value = value.replace(/\D/g,"");
-        const formattedValue = (Number(value)/100).toLocaleString("pt-BR", {
-            style: "currency",
-            currency: "BRL"
-        });
-        valueInput.value = formattedValue;
-    });
-  </script>
 </html>

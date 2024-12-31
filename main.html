@@ -13,21 +13,22 @@
             <h1>REGISTRE BOLETOS AQUI.</h1>
             <p>Preencha com as informações do boleto e salve.</p>
         </div>
+
         <div class="form">
             <h2 class="subtitle">Informações</h2>
             <div class="row">
                 <div class="field">
                     <label for="deliveryDate">Data da <b>Entrega</b></label>
                     <input type="date" name="deliveryDate" id="deliveryDate">
-                    <div id="errorDeliveryDate" class="errorMessage">Atenção: a data inserida é anterior à atual.</div>
+                    <div id="errorDeliveryDate" class="errorMessage">Atenção: a data inserida é posterior à atual.</div>
                 </div>
                 <div class="field">
                     <label for="merchandiseType">Tipo de <b>Mercadoria</b></label>
                     <select name="merchandiseType" id="merchandiseType">
-                        <option value="">Selecione</option>
-                        <option value="">Ético</option>
-                        <option value="">Genérico</option>
-                        <option value="">Perfumaria</option>
+                        <option disabled selected>Selecione</option>
+                        <option>Ético</option>
+                        <option>Genérico/Similar</option>
+                        <option>Perfumaria</option>
                     </select>
                 </div>
             </div>
@@ -36,8 +37,8 @@
                     <label for="payee"><b>Beneficiário</b></label>
                     <select name="payee" id="payee">
                         <option disabled selected>Selecione</option>
-                        <? for(var i=0; i<list.length; i++) { ?>
-                        <option><?= list[i]; ?></option>
+                        <? for(var i=0; i<payeeList.length; i++) { ?>
+                        <option><?= payeeList[i]; ?></option>
                         <? } ?>
                     </select>
                 </div>
@@ -54,6 +55,7 @@
                 </div>
             </div>
         </div>
+        
         <button type="button" id="button">
             <span class="material-symbols-outlined">check</span>
             Salvar
